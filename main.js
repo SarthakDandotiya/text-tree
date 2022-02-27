@@ -48,7 +48,7 @@ function render() {
 	$output.textContent = gen(parse($input.value)).join("\n");
 }
 
-function selectText(containerid) {
+function copyToClipboard(containerid) {
 	navigator.clipboard
 		.writeText(document.getElementById(containerid).textContent)
 		.then(
