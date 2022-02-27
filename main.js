@@ -61,13 +61,21 @@ function copyToClipboard(containerid) {
 		);
 }
 
+function save() {
+	sessionStorage.setItem("input-value", $input.value);
+}
+
 const $input = document.querySelector("#input");
 const $output = document.querySelector("#output");
 
 $input.addEventListener("input", render);
 
-$input.value = `
-              # the\n## quick\n### brown\n## fox\n## jumps\n### over\n#### the\n### lazy\n## dog
-              `.trim();
+if (sessionStorage.getItem("input-value") === null) {
+	$input.placeholder = `
+				  # the\n## quick\n### brown\n## fox\n## jumps\n### over\n#### the\n### lazy\n## dog\n# Double click result to copy to cliboard
+				  `.trim();
+} else {
+	$input.value = sessionStorage.getItem("input-value");
+}
 
 render();
